@@ -1,0 +1,54 @@
+cabal-version: 2.2
+name:
+  easyplot
+version:
+  1
+synopsis:
+  A tiny plotting library, utilizes gnuplot for plotting.
+description:    A tiny plotting library for Haskell, using gnuplot for rendering.
+                .
+                Developed and tested using Mac OS X 10.7.3 with gnuplot 4.4 (via MacPorts).
+                Compiles using GHC 7.0.4
+                .
+                Make sure gnuplot is in your path and everything should work.
+                .
+                Some sample plots:
+                .
+                > plot X11 $ Data2D [Title "Sample Data"] [] [(1, 2), (2, 4), ...]
+                .
+                > plot X11 $ Function2D [Title "Sine and Cosine"] [] (\x -> sin x * cos x)
+                .
+                > plot X11 sin
+                .
+                > plot (PNG "plot.png") (sin . cos)
+                .
+                > plot X11 $ Gnuplot2D [Color Blue] [] "2**cos(x)"
+                .
+                > plot X11 [ Data2D [Title "Graph 1", Color Red] [] [(x, x ** 3) | x <- [-4,-3.9..4]]
+                >          , Function2D [Title "Function 2", Color Blue] [] (\x -> negate $ x ** 2) ]
+                .
+                > plot' [Interactive] X11 $ Gnuplot3D [Color Magenta] [] "x ** 2 + y ** 3"
+
+license:        MIT
+license-File:   LICENSE
+author:         Julian Fleischer <julian.fleischer@fu-berlin.de>
+maintainer:     Julian Fleischer <julian.fleischer@fu-berlin.de>
+build-Type:     Simple
+category:       Graphics, Math, Plotting
+stability:      provisional
+homepage:       https://github.com/chessai/easyplot
+
+Source-Repository head
+    type:
+      git
+    location:
+      https://github.com/chessai/easyplot.git
+
+library
+  hs-source-dirs:
+    src
+  exposed-modules:
+    EasyPlot
+  build-depends:
+    , base >= 0.4.8.2 && < 0.5
+    , process >= 1.6 && < 1.7
